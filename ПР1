@@ -1,0 +1,16 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+int main() {
+    int t1, t2, t3;
+    std::cout << "Введіть три значення: ";
+    std::cin >> t1 >> t2 >> t3;
+
+    double total_time = t1 + t2 + t3;
+    total_time = round(total_time * 100) / 100; // Округлюємо до 2 знаків після коми
+
+    std::cout << "Час, необхідний для з'їдання пирога: " << total_time << std::endl;
+
+    return 0;
+}
