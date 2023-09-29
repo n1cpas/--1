@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    int r;
+    scanf("%d", &r);
+
+    // Масив для збереження кількості чисел з однаковими останніми двома цифрами
+    long long same[r + 1];
+
+    // Масив для збереження кількості чисел з різними останніми двома цифрами
+    long long different[r + 1];
+
+    // Ініціалізація для розрядів 1
+    same[1] = 0;
+    different[1] = 2;
+
+    // Обчислення кількості чисел для розрядів 2 до r
+    for (int i = 2; i <= r; i++) {
+        same[i] = different[i - 1];
+        different[i] = same[i - 1] + different[i - 1];
+    }
+
+    // Вивід кількості чисел з розрядами r
+    long long total = same[r] + different[r];
+    printf("%lld\n", total);
+
+    return 0;
+}
