@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <limits.h>
+
+int minSteps(int x, int y) {
+    int dp[y + 1];
+    
+    // Ініціалізуємо dp
+    for (int i = 0; i <= y; i++) {
+        dp[i] = INT_MAX;
+    }
+    
+    // Початкове значення для x
+    dp[x] = 0;
+    
+    // Обчислюємо dp для кожного числа від x до y
+    for (int i = x; i <= y; i++) {
+        if (dp[i] != INT_MAX) {
+            if (i + 1 <= y) {
+                dp[i + 1] = dp[i] + 1;
+            }
+            if (i * 2 <= y) {
+                dp[i * 2] = dp[i] + 1;
+            }
+        }
+    }
+    
+    return dp[y];
+}
+
+int main() {
+    int x, y;
+    printf("Введіть x та y (0 <= x <= y < 2^31): ");
+    scanf("%d %d", &x, &y);
+
+    int result = minSteps(x, y);
+
+    printf("Мінімальна кількість кроків: %d\n", result);
+
+    return 0;
+}
